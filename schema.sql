@@ -29,6 +29,11 @@ CREATE TABLE lectures (
 CREATE TABLE questions (
   id INT NOT NULL AUTO_INCREMENT,
   lecture_id INT NOT NULL,
+  thumbs0 INT NOT NULL,
+  thumbs30 INT NOT NULL,
+  thumbs45 INT NOT NULL,
+  thumbs60 INT NOT NULL,
+  thumbs90 INT NOT NULL,
   average_thumb_question DEC(4,2),
   PRIMARY KEY (ID)
 );
@@ -41,6 +46,7 @@ CREATE TABLE thumbs (
   timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (ID)
 );
+
 
 /*
  *

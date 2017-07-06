@@ -21,6 +21,7 @@ class App extends React.Component {
       lectureId: '',
       questionId: '',
       thumbValue: 2,
+      thumbsRange: [2, 5, 6, 10, 9],
       countdown: 30,
       givenName: '',
       lectureName: 'lobby',
@@ -115,7 +116,7 @@ class App extends React.Component {
     })
   }
 
-  setCountdownInterval() {
+  setCountdownInterval() {  //*************************
     countdownInterval = setInterval(() => {
       this.state.countdown === 0
         ? this.clearCountdownInterval()
@@ -139,11 +140,11 @@ class App extends React.Component {
     }
   }
 
-  startThumbsCheck(questionId) {
+  startThumbsCheck(questionId) { // based offf of qId, grab all thumbs data, not just avg
     this.setState({
       lectureStatus: 'checkingThumbs',
       questionId: questionId
-    }, this.setCountdownInterval)
+    }, this.setCountdownInterval) //**************
   }
 
   endThumbsCheck() {
@@ -198,8 +199,8 @@ class App extends React.Component {
         //console.log('Lecture Not Found');
       }
     })
-    
-    
+
+
 
   }
   handleLectureChange(event) {
@@ -251,6 +252,7 @@ class App extends React.Component {
               />
               : <Instructor
                 thumbValue={this.state.thumbValue}
+                thumbsRange={this.state.thumbsRange}
                 lectureId={this.state.lectureId}
                 lectureStatus={this.state.lectureStatus}
                 startLecture={this.startLecture.bind(this)}

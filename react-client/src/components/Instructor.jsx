@@ -37,6 +37,7 @@ class Instructor extends React.Component {
             lectureId={this.props.lectureId}
             countdown={this.props.countdown}
             thumbValue={this.props.thumbValue}
+            thumbsRange={this.props.thumbsRange}
             clearThumbsCheck={this.props.clearThumbsCheck}
           />}
       </div>

@@ -101,9 +101,12 @@ app.post('/checkthumbs', (req, res) => {
     db.asyncTimeout(32000, () => {
       for (let student in thumbs.students) {
         //console.log(`${thumbs.students[student].gmail}, ${thumbs.questionId}, ${thumbs.students[student].thumbValue}`);
+
         db.createThumbData(thumbs.students[student].gmail, thumbs.questionId, thumbs.students[student].thumbValue);
       }
       db.addAvgThumbForQuestion(questionId, thumbs.getAverageThumbValue());
+      let thumbsRange = thumbs.getThumbsRange();
+      db.addThumbsRangeForQuestion(questionId, thumbsRange[0], thumbsRange[1], thumbsRange[2], thumbsRange[3], thumbsRange[4]);
     });
     //send the response to the teacher
     res.send({ questionId: questionId });
@@ -156,7 +159,7 @@ io.on('connection', function (socket) {
     socket.leave(data.currentLecture);
     socket.join(data.newLecture);
   })
-  
+
   //socket.join('Test Room');
   //put the gmail username on each socket that is connected
   socket.on('username', function(data) {
@@ -193,6 +196,7 @@ class ThumbsData {
     this.questionId = questionId;
     this.students = {};
     this.instructor = instructor;
+    //this.
   }
 
   //adds a student to the data structure
@@ -216,6 +220,28 @@ class ThumbsData {
       }
     }
     return total / count;
+  }
+
+  getThumbsRange() {
+    let thumbs0 = 0;
+    let thumbs30 = 0;
+    let thumbs45 = 0;
+    let thumbs60 = 0;
+    let thumbs90 = 0;
+    for (let student in this.students) {
+      if (this.students[student].thumbValue === 0) {
+        thumbs0++;
+      } else if (this.students[student].thumbValue === 1) {
+        thumbs30++;
+      } else if (this.students[student].thumbValue === 2) {
+        thumbs45++;
+      } else if (this.students[student].thumbValue === 3) {
+        thumbs60++;
+      } else if (this.students[student].thumbValue === 4) {
+        thumbs90++;
+      }
+    }
+    return [thumbs0, thumbs30, thumbs45, thumbs60, thumbs90];
   }
 
   //check if a student is connected

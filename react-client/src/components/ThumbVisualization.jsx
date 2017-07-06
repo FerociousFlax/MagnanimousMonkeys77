@@ -29,10 +29,10 @@ class ThumbVisualization extends React.Component {
                   </div>
                 </Tab>
                 <Tab eventKey={2} title="Tab 2">
-                  <BarChart width="100" height="50"/>
+                  <BarChart thumbsRange={this.props.thumbsRange}/>
                 </Tab>
                 <Tab eventKey={3} title="Tab 3">
-                  <PieChart />
+                  <PieChart thumbsRange={this.props.thumbsRange}/>
                 </Tab>
             </Tabs>
         )

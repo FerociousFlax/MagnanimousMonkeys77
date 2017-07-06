@@ -10,8 +10,8 @@ class BarChart extends React.Component {
         labels: ['I DON\'T GET IT', 'NOT REALLY', 'NEUTRAL', 'I ALMOST GET IT', 'I GOT THIS!'],
         datasets: [
           {
-            data: [5, 10, 8, 7, 9], // this.props.votes
-            backgroundColor: ['rgba(255, 45, 45, 0.8)', 'rgba(51, 153, 255, 0.8)', 'rgba(255, 255, 102, 0.8)', 'rgba(153, 102, 255, 0.8)', 'rgba(75, 192, 192, 0.8)']
+            data: this.props.thumbsRange, // this.props.votes
+            backgroundColor: ['rgb(255, 45, 45)', 'rgb(51, 153, 255)', 'rgb(255, 255, 102)', 'rgb(153, 102, 255)', 'rgb(75, 192, 192)']
           }
         ]
       }

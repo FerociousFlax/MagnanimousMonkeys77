@@ -51,7 +51,7 @@ exports.lectureExists = function(lectureName) {
   return new Promise ((resolve, reject) => {
     pool.query(`SELECT * FROM LECTURES WHERE NAME = ("${lectureName}")`, (err, results) => {
       if (err) {
-        console.log(err); 
+        console.log(err);
       } else {
         resolve(results);
       }
@@ -73,6 +73,19 @@ exports.createNewQuestion = function(lectureId) {
 
 /* Section
 */
+
+
+exports.addThumbsRangeForQuestion = function(questionId, thumbs0, thumbs30, thumbs45, thumbs60, thumbs90) {
+  return new Promise ((resolve, reject) => {
+    pool.query(`UPDATE questions SET thumbs0=${thumbs0}, thumbs30=${thumbs30}, thumbs45=${thumbs45}, thumbs60=${thumbs60}, thumbs90=${thumbs90} WHERE id=${questionId}`, (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        resolve(results);
+      }
+    });
+  })
+}
 
 exports.addAvgThumbForQuestion = function(questionId, avgThumbValue) {
   return new Promise ((resolve, reject) => {

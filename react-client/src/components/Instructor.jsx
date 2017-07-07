@@ -13,10 +13,18 @@ class Instructor extends React.Component {
     console.log('props', props);
     socket.on('averageThumbValue', (data) => {
       if (props.view === 'instructor') {
-        console.log('data', data);
+        //console.log('dataXXX', data);
         props.changeThumbValue(data.averageThumbValue);
       }
     });
+
+    // socket.on('thumbVotes', (data) => {
+    //   if (props.view === 'instructor') {
+    //     //make props.changeThumbVotes function // or grab and apss dowwn, invoke in graphs
+    //     console.log('j---------', data);
+    //     props.changeThumbVotes([1, 2, 3, 4, 5]); // data.getVotes
+    //   }
+    // });
   }
 
   render () {
@@ -37,7 +45,9 @@ class Instructor extends React.Component {
             lectureId={this.props.lectureId}
             countdown={this.props.countdown}
             thumbValue={this.props.thumbValue}
+            thumbVotes={this.props.thumbVotes}
             clearThumbsCheck={this.props.clearThumbsCheck}
+            changeThumbVotes={this.props.changeThumbVotes}
           />}
       </div>
     )
